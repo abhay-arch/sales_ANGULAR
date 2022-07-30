@@ -1,0 +1,71 @@
+<!-- <p>sales-person-list works!</p>
+{{ name}}
+
+<p> sales person list</p>
+
+First Name : {{s1.firstname}}
+Last Name : {{s1.lastname}}
+Email Address : {{s1.email}}
+salary : {{s1.salary}}
+salesVolume : {{s1.salesVolume}} -->
+
+<div class="container">
+<table class="table table-bordered ">
+   <tr> 
+       <th>First Name</th>
+       <th>Last Name</th>
+       <th>Email Address</th>
+       <th>salary</th>
+       <th>salesVolume</th>
+   </tr>
+   
+   <tr *ngFor = "let person of salesList " [ngClass] = "{'metQuote' : person.salary >= 3000, 'nonMetQuote' : person.salary < 3000}">
+       <td> {{person.firstname}}</td>
+       <td> {{person.lastname}}</td>
+       <td> {{person.email}}</td>
+       <td> {{person.salary}}</td>
+       <td> {{person.salesVolume}}</td>
+       <td>
+        <div *ngIf="person.salary>3000; else elseBlock">YES</div>
+        <ng-template #elseBlock>NO</ng-template>
+       </td>
+   </tr>
+</table>
+
+<form #salesperson="ngForm" (ngSubmit)="onSubmit()">
+    <div class="row">
+        <div class="col-sm-3"><label>First Name</label></div>
+        <div class="col-sm-3"><input type="text" name="firstname" [(ngModel)]="formModel.firstname"></div>
+    </div>
+    &nbsp;
+
+    <div class="row">
+        <div class="col-sm-3"><label>Last Name</label></div>
+        <div class="col-sm-3"><input type="text" name="lastname" [(ngModel)]="formModel.lastname" ></div>
+    </div>
+    &nbsp;
+ 
+    <div class="row">
+        <div class="col-sm-3"><label>Email Address</label></div>
+        <div class="col-sm-3"><input type="text" name="email" [(ngModel)]="formModel.email"></div>
+    </div>
+    
+
+    <div class="row">
+        <div class="col-sm-3"><label>Salary</label></div>
+        <div class="col-sm-3"><input type="text" name="salary" [(ngModel)]="formModel.salary"></div>
+    </div>
+    
+
+    <div class="row">
+        <div class="col-sm-3"><label>salesVolume</label></div>
+        <div class="col-sm-3"><input type="text" name="salesvolume" [(ngModel)]="formModel.salesVolume"></div>
+    </div>
+    &nbsp;
+
+    <div class="row">
+        <div class="col-sm-3"><input type="submit" name="submit" class="btn btn-lg btn-primary"></div>
+    </div>
+
+</form>
+</div>
